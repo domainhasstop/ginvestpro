@@ -172,9 +172,15 @@ const App = () => {
                     }
                 `}>
                     {!isSentByCurrentUser && (
-                        // Penampilan ID pengirim diubah jadi lebih pendek dan fun
+                        // Penampilan ID pengirim diubah: jika bukan Anda, beri label "Pengguna Lain"
                         <div className="font-bold text-xs mb-1 break-all text-blue-700">
-                            Anon ({message.senderId.substring(message.senderId.length - 4)}):
+                            {message.senderId !== userId ? 'Pengguna Lain' : 'Anda'} ({message.senderId.substring(message.senderId.length - 4)}):
+                        </div>
+                    )}
+                    {isSentByCurrentUser && (
+                        // Tambahkan label "Anda" untuk pesan sendiri jika diperlukan
+                        <div className="font-bold text-xs mb-1 break-all text-blue-200 text-right">
+                            Anda
                         </div>
                     )}
                     <p className="whitespace-pre-wrap">{message.text}</p>
