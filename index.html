@@ -81,13 +81,32 @@
         <div id="registerModal" class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center p-4 z-[1000] hidden">
             <div class="bg-white p-8 rounded-xl max-w-md w-full card-shadow text-center" onclick="event.stopPropagation()">
                 <h3 class="text-2xl font-bold mb-2 text-green-600">Pengguna Baru Terdeteksi</h3>
-                <p class="text-sm text-gray-500 mb-6">Nomor HP ini belum terdaftar. Dapatkan <span class="font-bold text-blue-600">1000 Lot Gratis</span> (Akun Trial).</p>
+                <p class="text-sm text-gray-500 mb-6">Nomor HP <span id="regPhoneDisplay" class="font-bold"></span> belum terdaftar. Dapatkan <span class="font-bold text-blue-600">1000 Lot Gratis</span> (Akun Trial).</p>
                 <form id="registerForm">
                     <div class="mb-4 text-left"><label class="block text-xs font-bold text-gray-600 mb-1">Nama Lengkap</label><input type="text" id="regName" class="input-user" required></div>
-                    <div class="mb-4 text-left"><label class="block text-xs font-bold text-gray-600 mb-1">Nama Bank</label><select id="regBank" class="input-user" required><option value="BCA">BCA</option><option value="BRI">BRI</option><option value="BNI">BNI</option><option value="MANDIRI">MANDIRI</option><option value="LAINNYA">LAINNYA</option></select></div>
+                    <div class="mb-4 text-left"><label class="block text-xs font-bold text-gray-600 mb-1">Nama Bank</label>
+                    <select id="regBank" class="input-user" required>
+                        <option value="" disabled selected>Pilih Bank</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BRI">BRI</option>
+                        <option value="BNI">BNI</option>
+                        <option value="MANDIRI">MANDIRI</option>
+                        <option value="CIMB NIAGA">CIMB NIAGA</option>
+                        <option value="DANAMON">DANAMON</option>
+                        <option value="PERMATA">PERMATA</option>
+                        <option value="PANIN">PANIN</option>
+                        <option value="BTN">BTN</option>
+                        <option value="BSI">BSI (Syariah)</option>
+                        <option value="JAGO">BANK JAGO</option>
+                        <option value="SEABANK">SEABANK</option>
+                        <option value="NEO">NEO COMMERCE</option>
+                        <option value="ALADIN">ALADIN</option>
+                        <option value="LAINNYA">LAINNYA</option>
+                    </select>
+                    </div>
                     <div class="mb-6 text-left"><label class="block text-xs font-bold text-gray-600 mb-1">Nomor Rekening</label><input type="number" id="regAccountNum" class="input-user" required></div>
                     <button type="submit" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition duration-200 shadow-lg">Buat Akun Trial</button>
-                    <button type="button" id="cancelRegisterBtn" class="mt-3 w-full py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-lg transition">Batal</button>
+                    <button type="button" id="cancelRegisterBtn" class="mt-3 w-full py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-lg transition">Batal / Kembali Login</button>
                 </form>
             </div>
         </div>
@@ -158,7 +177,7 @@
 
         <!-- Modals and Overlay Components -->
         
-        <!-- Top Up Input Modal -->
+        <!-- Top Up Input Modal (NEW) -->
         <div id="topUpInputModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden flex items-center justify-center p-4 z-[1000]">
             <div class="bg-white p-6 rounded-xl max-w-md w-full card-shadow">
                 <h3 class="text-2xl font-bold mb-4 text-green-700 border-b pb-2">Isi Saldo RDN</h3>
@@ -178,7 +197,7 @@
             <div class="bg-white p-6 rounded-xl max-w-lg w-full card-shadow"><h3 class="text-2xl font-bold mb-4 border-b pb-2" id="modalTitle">Order Saham</h3><form id="orderForm"><div class="mb-4"><label class="block text-gray-700 font-semibold mb-2">Harga</label><input type="number" id="price" class="input-user bg-gray-100" readonly></div><div class="mb-6"><label class="block text-gray-700 font-semibold mb-2">Jumlah Lot</label><input type="number" id="lots" min="1" value="1" class="input-user" required><p id="minLotWarning" class="text-xs text-red-500 mt-2 hidden">Minimal 1 lot.</p><p id="buyMethodText" class="text-xs text-blue-600 mt-1 hidden">Pembelian menggunakan Saldo RDN.</p></div><div class="text-right"><button type="button" id="cancelOrderBtn" class="py-2 px-4 bg-gray-300 hover:bg-gray-400 rounded-lg mr-2 font-bold">Batal</button><button type="submit" id="submitButton" class="py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">Konfirmasi</button></div></form></div>
         </div>
         
-        <!-- Payment Modal -->
+        <!-- Payment Modal (Re-purposed for Top Up) -->
         <div id="paymentModal" class="fixed inset-0 bg-gray-900 bg-opacity-90 hidden flex items-center justify-center p-4 z-[1050]">
             <div class="bg-white p-6 rounded-xl max-w-md w-full text-center" onclick="event.stopPropagation()">
                 <h3 class="text-2xl font-bold mb-4 text-green-700 border-b pb-2">Transfer Top Up</h3>
@@ -194,7 +213,7 @@
         <!-- Result Modal -->
         <div id="resultModal" class="fixed inset-0 bg-gray-900 bg-opacity-90 hidden flex items-center justify-center p-4 z-[1050]"><div class="bg-white p-8 rounded-xl max-w-sm w-full text-center"><div id="resultIcon" class="mx-auto mb-4 w-20 h-20 flex items-center justify-center rounded-full text-4xl"></div><h3 class="text-2xl font-bold mb-2" id="resultTitle">Hasil</h3><p class="text-gray-600 mb-6" id="resultMessage">Detail hasil trading.</p><button onclick="document.getElementById('resultModal').classList.add('hidden')" class="w-full py-3 bg-blue-600 text-white font-bold rounded-lg">Tutup</button></div></div>
         
-        <!-- URGENT ALERT MODAL -->
+        <!-- URGENT ALERT MODAL (NEW - Z-INDEX 2000) -->
         <div id="urgentAlertModal" class="fixed inset-0 bg-black/95 flex items-center justify-center z-[2000] hidden">
             <div class="bg-red-600 p-1 rounded-2xl shadow-2xl max-w-md w-full animate-bounce-in transform scale-105">
                 <div class="bg-white p-8 rounded-xl text-center">
@@ -203,18 +222,37 @@
                     </div>
                     <h3 id="urgentTitle" class="text-2xl font-bold mb-3 text-gray-900">PEMBERITAHUAN PENTING</h3>
                     <p id="urgentBody" class="text-gray-600 mb-6 text-lg leading-relaxed">Mohon perhatikan pesan ini.</p>
-                    <button id="urgentConfirmBtn" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-xl shadow-lg transition transform active:scale-95">OK, SAYA MENGERTI</button>
+                    <button id="urgentConfirmBtn" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-bold text-lg rounded-xl shadow-lg transition transform active:scale-95">
+                        OK, SAYA MENGERTI
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Company Info Page -->
         <div id="company-info-page" class="hidden max-w-4xl mx-auto animate-fade-in"><div class="bg-white p-5 rounded-xl mb-6 flex justify-between items-center card-shadow border-l-4 border-blue-600"><div><h2 class="text-2xl font-bold text-gray-800">Profil Perusahaan</h2><p class="text-sm text-gray-500">PT Garuda Indonesia (Persero) Tbk.</p></div><button id="backToDashboardBtn" class="py-2 px-4 bg-gray-100 text-blue-600 font-bold rounded-lg hover:bg-gray-200 transition flex items-center">Kembali ke Dashboard</button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-white p-6 rounded-xl card-shadow"><h3 class="text-lg font-bold mb-4 border-b pb-2">Data Fundamental</h3><div class="space-y-4"><div class="flex justify-between items-center border-b pb-2"><span class="text-gray-500">Kode Saham</span><span class="font-bold text-blue-600">GIAA</span></div><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Sektor</span><span class="font-medium text-right text-gray-800">Transportasi & Logistik (Penerbangan)</span></div><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Kapitalisasi Pasar</span><span class="font-medium text-gray-800">Rp 10.52 Triliun</span></div><div class="flex justify-between items-center"><span class="text-gray-500">P/E Ratio</span><span class="font-medium text-red-500">-5.5x</span></div></div></div><div class="bg-white p-6 rounded-xl card-shadow"><h3 class="text-lg font-bold mb-4 border-b pb-2 text-gray-800">Kontak Hubungan Investor</h3><div class="space-y-4"><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Jabatan</span><span class="font-medium text-gray-800">VP Financial Accounting</span></div><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Nama Kontak</span><span class="font-medium text-gray-800">Gatot Satriawan</span></div><div class="flex flex-col"><span class="text-gray-500 mb-1">Email Resmi</span><span class="font-medium text-blue-600 break-all">ccfoundation.volunteer@gmail.com</span></div></div></div></div></div>
         <div id="notificationBox" class="fixed bottom-4 right-4 text-white p-4 rounded-lg shadow-xl hidden opacity-0 transition-opacity duration-300 z-[500]"></div>
         <div id="chat-widget-container" class="fixed bottom-24 right-6 z-[9999]"><button id="chat-toggle-btn" class="w-14 h-14 bg-sky-600 text-white rounded-full shadow-2xl flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg></button></div>
         <div id="app-container" class="fixed bottom-24 right-6 z-[9999] hidden w-full max-w-[360px] bg-white shadow-2xl rounded-2xl overflow-hidden mb-4 border border-gray-200">
-            <header class="bg-gradient-to-r from-sky-600 to-blue-600 text-white p-4 flex justify-between items-center shadow-lg"><div><h1 class="text-sm font-bold">CS Ginvest Live</h1><p class="text-[10px] opacity-80" id="chat-user-display">Connecting...</p></div><button onclick="document.getElementById('app-container').classList.add('hidden')" class="text-white hover:text-gray-200">&times;</button></header>
-            <div id="chat-screen" class="flex flex-col h-[350px]"><div id="messages-container" class="flex-grow px-3 py-4 overflow-y-auto space-y-3 bg-gray-50"><div class="text-center text-xs text-gray-400 mt-4">Mulai percakapan dengan CS...</div></div><div class="p-3 border-t border-gray-200 bg-white"><div class="flex space-x-2"><input type="text" id="message-input" placeholder="Tulis pesan..." class="flex-grow px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" maxlength="200"><button id="send-button" class="flex-shrink-0 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow transition">Kirim</button></div></div></div>
+            <!-- Header Aplikasi Chat -->
+            <header class="bg-gradient-to-r from-sky-600 to-blue-600 text-white p-4 flex justify-between items-center shadow-lg">
+                <div>
+                    <h1 class="text-sm font-bold">CS Ginvest Live</h1>
+                    <p class="text-[10px] opacity-80" id="chat-user-display">Connecting...</p>
+                </div>
+                <button onclick="document.getElementById('app-container').classList.add('hidden')" class="text-white hover:text-gray-200">&times;</button>
+            </header>
+            <!-- Tampilan Chat -->
+            <div id="chat-screen" class="flex flex-col h-[350px]">
+                <div id="messages-container" class="flex-grow px-3 py-4 overflow-y-auto space-y-3 bg-gray-50">
+                    <div class="text-center text-xs text-gray-400 mt-4">Mulai percakapan dengan CS...</div>
+                </div>
+                <div class="p-3 border-t border-gray-200 bg-white">
+                    <div class="flex space-x-2">
+                        <input type="text" id="message-input" placeholder="Tulis pesan..." class="flex-grow px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500" maxlength="200">
+                        <button id="send-button" class="flex-shrink-0 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow transition">Kirim</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -223,9 +261,15 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc, addDoc, onSnapshot, collection, query, serverTimestamp, setLogLevel, getDocs, deleteDoc, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // CONFIG
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-ginvest-app-id';
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "AIzaSyA_FynN_E6zxOEHo3k2t-olypo2Tu_D-zQ", authDomain: "webchatapp90.firebaseapp.com", projectId: "webchatapp90" };
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyA_FynN_E6zxOEHo3k2t-olypo2Tu_D-zQ",
+            authDomain: "webchatapp90.firebaseapp.com",
+            projectId: "webchatapp90"
+        };
+
         const app = initializeApp(firebaseConfig, "GInvestUser");
         const db = getFirestore(app);
         const auth = getAuth(app);
@@ -240,20 +284,58 @@
         let currentUserId = null; 
         let currentUserData = { name: "Pengunjung", bank: "-", accountNumber: "-", lotOwned: 0, rdnBalance: 0, hasToppedUp: false, status: 'TRIAL', pendingTopUp: 0, pendingWithdrawal: 0 };
         let tempPhoneForReg = "", tempPassForReg = "";
-        let currentPrice = 115, chartInstance, marketMode = 'RANDOM', marketInterval;
-        let pendingTopUpAmount = 0;
-        let tradingState = { isTrading: false, timer: 20, interval: null, entryPrice: 0, direction: '', bidAmount: 0, targetOutcome: 'RANDOM' };
+        let currentPrice = 115;
+        let chartInstance;
+        let marketMode = 'RANDOM'; // Default
+        let marketInterval;
         const CHART_LENGTH = 30;
+        
+        // Variables for Top Up
+        let pendingTopUpAmount = 0;
 
-        function formatRupiah(n) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(n); }
-        function formatNumber(n) { return new Intl.NumberFormat('id-ID').format(n); }
-        function safeAddEventListener(id, event, handler) { const el = document.getElementById(id); if (el) el.addEventListener(event, handler); }
+        // Trading State Object
+        let tradingState = {
+            isTrading: false,
+            timer: 20,
+            interval: null,
+            entryPrice: 0,
+            direction: '',
+            bidAmount: 0,
+            targetOutcome: 'RANDOM' // Will be set from queue
+        };
 
+        // ** HELPERS **
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+        }
+        
+        function formatNumber(num) {
+            return new Intl.NumberFormat('id-ID').format(num);
+        }
+        
+        // NEW: SAFE LISTENER HELPER
+        function safeAddEventListener(id, event, handler) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener(event, handler);
+            }
+        }
+
+        // SHOW TEMPORARY POPUP FUNCTION
         function showTransactionPopup(msg) {
             const popup = document.getElementById('tempTransactionPopup');
             popup.querySelector('p').textContent = msg;
-            popup.classList.remove('hidden'); popup.classList.add('flex', 'fade-in-up');
-            setTimeout(() => { popup.classList.remove('fade-in-up'); popup.classList.add('fade-out-down'); setTimeout(() => { popup.classList.add('hidden'); popup.classList.remove('flex', 'fade-out-down'); }, 300); }, 2000);
+            popup.classList.remove('hidden');
+            popup.classList.add('flex', 'fade-in-up');
+            
+            setTimeout(() => {
+                popup.classList.remove('fade-in-up');
+                popup.classList.add('fade-out-down');
+                setTimeout(() => {
+                    popup.classList.add('hidden');
+                    popup.classList.remove('flex', 'fade-out-down');
+                }, 300);
+            }, 2000);
         }
 
         function showNotification(msg, success = true) {
@@ -265,91 +347,192 @@
             setTimeout(() => box.classList.add('hidden'), 4300);
         }
 
-        async function initAuth() { if (!auth.currentUser) { if (initialAuthToken) await signInWithCustomToken(auth, initialAuthToken); else await signInAnonymously(auth); } }
-        async function seedDefaultUser() {
-            const userRef = doc(db, USERS_COLLECTION, "081226418380");
-            try { const snap = await getDoc(userRef); if (!snap.exists()) await setDoc(userRef, { password: "qwerty123", name: "Bagus Ramadhani", bank: "BRI", accountNumber: "459801043667539", lotOwned: 1000, rdnBalance: 81000000, isTransactionPending: false, hasMadeFirstPurchase: false, isWithdrawalPending: false, hasToppedUp: true, status: 'PREMIUM', pendingTopUp: 0, pendingWithdrawal: 0 }); } catch(e) {}
+        // ** AUTH **
+        async function initAuth() {
+            if (auth.currentUser) return;
+            if (initialAuthToken) await signInWithCustomToken(auth, initialAuthToken);
+            else await signInAnonymously(auth);
         }
 
+        async function seedDefaultUser() {
+            const userRef = doc(db, USERS_COLLECTION, "081226418380");
+            try {
+                const snap = await getDoc(userRef);
+                if (!snap.exists()) {
+                    await setDoc(userRef, {
+                        password: "qwerty123", name: "Bagus Ramadhani", bank: "BRI", accountNumber: "459801043667539",
+                        lotOwned: 1000, rdnBalance: 81000000, isTransactionPending: false, hasMadeFirstPurchase: false, isWithdrawalPending: false, hasToppedUp: true, status: 'PREMIUM', pendingTopUp: 0, pendingWithdrawal: 0
+                    });
+                }
+            } catch(e) {}
+        }
+
+        // ** LISTENERS **
+        // LISTEN FOR ADMIN BROADCASTS (PERSONAL NOTIF)
         function listenToUserData() {
             if(!currentUserId) return;
+            
             let lastNotifTime = 0;
+
             onSnapshot(doc(db, USERS_COLLECTION, currentUserId), (docSnap) => {
                 if(docSnap.exists()) {
                     const data = docSnap.data();
-                    currentUserData = data; updateUI();
+                    
+                    // Update Local Data
+                    currentUserData = data;
+                    updateUI(); 
+                    
+                    // Check for Personal Notification from Admin
                     if (data.systemNotification && data.systemNotification.timestamp) {
                         const serverTime = data.systemNotification.timestamp.toMillis ? data.systemNotification.timestamp.toMillis() : 0;
                         const now = Date.now();
+                        
+                        // Only show if notification is new (within last 15 seconds) and different from last processed
                         if (serverTime > now - 15000 && serverTime !== lastNotifTime) {
-                            lastNotifTime = serverTime;
+                            lastNotifTime = serverTime; // Mark as handled
+                            
+                            // === LOGIKA BARU: CEK TIPE NOTIFIKASI ===
                             if (data.systemNotification.type === 'CUSTOM_URGENT') {
+                                // Tampilkan Modal Blocking (Overlay Merah)
                                 document.getElementById('urgentTitle').textContent = data.systemNotification.title || "PEMBERITAHUAN";
                                 document.getElementById('urgentBody').textContent = data.systemNotification.msg;
                                 document.getElementById('urgentAlertModal').classList.remove('hidden');
                             } else if (data.systemNotification.type === 'TOPUP') {
+                                // HANDLE TOP UP APPROVAL
                                 if (currentUserData.pendingTopUp > 0) {
-                                    const newBalance = (currentUserData.rdnBalance || 0) + currentUserData.pendingTopUp;
-                                    updateDoc(doc(db, USERS_COLLECTION, currentUserId), { rdnBalance: newBalance, pendingTopUp: 0 });
-                                    showNotification("Top Up berhasil masuk!", true);
+                                    const amount = currentUserData.pendingTopUp;
+                                    const newBalance = (currentUserData.rdnBalance || 0) + amount;
+                                    updateDoc(doc(db, USERS_COLLECTION, currentUserId), {
+                                        rdnBalance: newBalance,
+                                        pendingTopUp: 0
+                                    });
+                                    showNotification("Top Up senilai " + formatRupiah(amount) + " berhasil! Saldo telah ditambahkan.", true);
                                 }
                             } else if (data.systemNotification.type === 'WITHDRAW') {
+                                // HANDLE WITHDRAWAL APPROVAL
                                 if (currentUserData.pendingWithdrawal > 0) {
-                                    updateDoc(doc(db, USERS_COLLECTION, currentUserId), { rdnBalance: (currentUserData.rdnBalance || 0) - currentUserData.pendingWithdrawal, pendingWithdrawal: 0, isWithdrawalPending: false });
-                                    showNotification("Penarikan dana berhasil.", true);
+                                    const amount = currentUserData.pendingWithdrawal;
+                                    // Deduct balance locally and sync
+                                    const newBalance = (currentUserData.rdnBalance || 0) - amount;
+                                    if (newBalance < 0) {
+                                         // Should not happen with proper validation, but safe guard
+                                    }
+                                    
+                                    updateDoc(doc(db, USERS_COLLECTION, currentUserId), {
+                                        rdnBalance: newBalance,
+                                        pendingWithdrawal: 0,
+                                        isWithdrawalPending: false 
+                                    });
+                                    
+                                    showNotification("Penarikan dana sebesar " + formatRupiah(amount) + " telah berhasil dikirim ke rekening Anda.", true);
                                 }
-                            } else showNotification(data.systemNotification.msg, true);
+                            } else {
+                                // Tampilkan Notifikasi Toast Biasa (Hijau/Biru)
+                                showNotification(data.systemNotification.msg, true);
+                            }
                         }
                     }
                 }
             });
         }
         
-        safeAddEventListener('urgentConfirmBtn', 'click', () => document.getElementById('urgentAlertModal').classList.add('hidden'));
+        // Listener untuk menutup modal urgent (Local UI Action)
+        safeAddEventListener('urgentConfirmBtn', 'click', () => {
+            document.getElementById('urgentAlertModal').classList.add('hidden');
+        });
 
+        // LISTEN TO CONFIG (FOR OUTCOME QUEUE)
         function listenToMarketLogic() {
-            onSnapshot(doc(db, "artifacts", appId, "public", "data", "ginvest_market", "giaa"), (snap) => { if (snap.exists() && snap.data().price) updatePrice(snap.data().price); });
-            onSnapshot(doc(db, "artifacts", appId, "public", "data", "ginvest_market", "config"), (snap) => { if (snap.exists()) marketMode = snap.data().trendMode || 'RANDOM'; });
+            onSnapshot(doc(db, "artifacts", appId, "public", "data", "ginvest_market", "giaa"), (docSnap) => {
+                if (docSnap.exists() && docSnap.data().price) {
+                    updatePrice(docSnap.data().price);
+                }
+            });
+            // Note: Queue logic is handled inside startTrade via direct getDoc to consume
         }
 
         function startMarketLoop() {
             if (marketInterval) clearInterval(marketInterval);
             marketInterval = setInterval(() => {
-                let delta = 0; const rand = Math.random(); const magnitude = Math.floor(Math.random() * 2) + 1; 
+                let delta = 0;
+                const rand = Math.random();
+                const magnitude = Math.floor(Math.random() * 2) + 1; 
+
+                // --- RIGGING LOGIC DURING TRADE ---
                 if (tradingState.isTrading && tradingState.targetOutcome !== 'RANDOM') {
-                    if (tradingState.targetOutcome === 'WIN') delta = (tradingState.direction === 'UP') ? magnitude : -magnitude; 
-                    else if (tradingState.targetOutcome === 'LOSS') delta = (tradingState.direction === 'UP') ? -magnitude : magnitude;
+                    // If trying to WIN
+                    if (tradingState.targetOutcome === 'WIN') {
+                         if (tradingState.direction === 'UP') delta = magnitude; // Force Up
+                         else delta = -magnitude; // Force Down
+                    } 
+                    // If trying to LOSE
+                    else if (tradingState.targetOutcome === 'LOSS') {
+                         if (tradingState.direction === 'UP') delta = -magnitude; // Force Down
+                         else delta = magnitude; // Force Up
+                    }
                 } else {
-                    if (currentPrice <= 110) delta = magnitude; else if (currentPrice >= 130) delta = -magnitude; else delta = rand > 0.5 ? magnitude : -magnitude;
+                    // --- NORMAL MARKET LOGIC (Random 110-130) ---
+                    if (currentPrice <= 110) {
+                        delta = magnitude; // Wajib Naik
+                    } else if (currentPrice >= 130) {
+                        delta = -magnitude; // Wajib Turun
+                    } else {
+                        // Random Naik/Turun
+                        delta = rand > 0.5 ? magnitude : -magnitude;
+                    }
                 }
+
                 updatePrice(currentPrice + delta);
             }, 2000); 
         }
 
         function updatePrice(newPrice) {
-            const oldPrice = currentPrice; currentPrice = newPrice; if(currentPrice < 50) currentPrice = 50; 
+            const oldPrice = currentPrice;
+            currentPrice = newPrice;
+            // Enforcement just in case
+            if(currentPrice < 110) currentPrice = 110; 
+            if(currentPrice > 130) currentPrice = 130;
+
             const el = document.getElementById('current-price');
-            el.textContent = formatNumber(currentPrice);
-            el.className = currentPrice > oldPrice ? "text-4xl font-extrabold price-up" : "text-4xl font-extrabold price-down";
-            if(chartInstance) { chartInstance.data.datasets[0].data.push(currentPrice); chartInstance.data.datasets[0].data.shift(); chartInstance.update(); }
+            el.textContent = formatNumber(currentPrice); // Formatted Price
+            el.className = currentPrice > oldPrice ? "text-4xl font-extrabold price-up" : (currentPrice < oldPrice ? "text-4xl font-extrabold price-down" : "text-4xl font-extrabold");
+
+            if(chartInstance) {
+                chartInstance.data.datasets[0].data.push(currentPrice);
+                chartInstance.data.datasets[0].data.shift();
+                chartInstance.update();
+            }
             updateUI(); 
         }
 
         // DEFINED BEFORE USAGE
         function initChart() {
             const ctx = document.getElementById('stockChart').getContext('2d');
-            chartInstance = new Chart(ctx, { type: 'line', data: { labels: Array(CHART_LENGTH).fill(''), datasets: [{ label: 'GIAA', data: Array(CHART_LENGTH).fill(115), borderColor: '#007bff', backgroundColor: 'rgba(0,123,255,0.1)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.4 }] }, options: { responsive: true, maintainAspectRatio: false, animation: false, scales: { y: { min: 100, max: 140 }, x: { display: false } }, plugins: { legend: { display: false } } } });
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: { labels: Array(CHART_LENGTH).fill(''), datasets: [{ label: 'GIAA', data: Array(CHART_LENGTH).fill(115), borderColor: '#007bff', backgroundColor: 'rgba(0,123,255,0.1)', borderWidth: 2, pointRadius: 0, fill: true, tension: 0.4 }] },
+                options: { responsive: true, maintainAspectRatio: false, animation: false, scales: { y: { min: 100, max: 140 }, x: { display: false } }, plugins: { legend: { display: false } } }
+            });
         }
 
         function updateUI() {
             document.getElementById('user-name').textContent = currentUserData.name;
             document.getElementById('user-id').textContent = `${currentUserData.bank} - ${currentUserData.accountNumber}`;
-            document.getElementById('lot-owned').textContent = `${formatNumber(currentUserData.lotOwned || 0)} Lot`;
+            document.getElementById('lot-owned').textContent = `${formatNumber(currentUserData.lotOwned || 0)} Lot`; // Formatted Lot
+            
+            // STATUS BADGE
             const statusBadge = document.getElementById('statusBadge');
-            if (currentUserData.status === 'PREMIUM') { statusBadge.textContent = 'PREMIUM'; statusBadge.className = 'text-xs px-2 py-1 bg-yellow-500 text-white rounded-full ml-2 font-bold shadow'; } 
-            else { statusBadge.textContent = 'TRIAL'; statusBadge.className = 'text-xs px-2 py-1 bg-gray-300 text-gray-700 rounded-full ml-2 font-bold'; }
+            if (currentUserData.status === 'PREMIUM') {
+                statusBadge.textContent = 'PREMIUM';
+                statusBadge.className = 'text-xs px-2 py-1 bg-yellow-500 text-white rounded-full ml-2 font-bold shadow';
+            } else {
+                statusBadge.textContent = 'TRIAL';
+                statusBadge.className = 'text-xs px-2 py-1 bg-gray-300 text-gray-700 rounded-full ml-2 font-bold';
+            }
+
             const portfolioVal = (currentUserData.lotOwned || 0) * 100 * currentPrice;
             document.getElementById('profile-portfolio-value').textContent = formatRupiah(portfolioVal);
+            
             const rdnElements = [document.getElementById('rdn-cash-balance'), document.getElementById('modal-rdn-balance')];
             rdnElements.forEach(el => el.textContent = formatRupiah(currentUserData.rdnBalance || 0));
         }
@@ -359,33 +542,73 @@
             const phone = document.getElementById('loginPhone').value.trim();
             const pass = document.getElementById('loginPassword').value.trim();
             if(!phone || !pass) return;
+
             document.getElementById('loadingText').textContent = "Memverifikasi...";
             document.getElementById('transitionOverlay').classList.remove('hidden', 'opacity-0');
             document.getElementById('transitionOverlay').classList.add('opacity-100');
+
             try {
                 await initAuth();
                 const userRef = doc(db, USERS_COLLECTION, phone);
                 let snap = await getDoc(userRef);
-                if (!snap.exists() && phone === "081226418380") { await seedDefaultUser(); snap = await getDoc(userRef); }
+
+                if (!snap.exists() && phone === "081226418380") {
+                    console.log("Mendeteksi user lama yang hilang. Memulihkan...");
+                    await seedDefaultUser(); 
+                    snap = await getDoc(userRef); 
+                }
 
                 if(snap.exists()) {
-                    if(snap.data().password === pass) { currentUserId = phone; currentUserData = snap.data(); finishLogin(); } else { alert("Password Salah"); hideLoading(); }
+                    const data = snap.data();
+                    if(data.password === pass) {
+                        currentUserId = phone;
+                        currentUserData = data;
+                        finishLogin();
+                    } else {
+                        alert("Password Salah");
+                        hideLoading();
+                    }
                 } else {
-                    tempPhoneForReg = phone; tempPassForReg = pass;
+                    tempPhoneForReg = phone;
+                    tempPassForReg = pass;
+                    
+                    // TAMPILKAN NOMOR DI MODAL REGISTER
+                    document.getElementById('regPhoneDisplay').textContent = phone;
+
                     document.getElementById('loginModal').classList.add('hidden');
                     document.getElementById('registerModal').classList.remove('hidden');
                     hideLoading();
                 }
-            } catch(e) { alert("Error Login: " + e.message); hideLoading(); }
+            } catch(e) {
+                console.error(e);
+                alert("Error Login: " + e.message);
+                hideLoading();
+            }
         });
 
         safeAddEventListener('registerForm', 'submit', async (e) => {
             e.preventDefault();
-            const newUser = { password: tempPassForReg, name: document.getElementById('regName').value, bank: document.getElementById('regBank').value, accountNumber: document.getElementById('regAccountNum').value, lotOwned: 1000, rdnBalance: 0, isTransactionPending: false, hasMadeFirstPurchase: false, isWithdrawalPending: false, hasToppedUp: false, status: 'TRIAL', pendingTopUp: 0, pendingWithdrawal: 0 };
+            const newUser = {
+                password: tempPassForReg,
+                name: document.getElementById('regName').value,
+                bank: document.getElementById('regBank').value,
+                accountNumber: document.getElementById('regAccountNum').value,
+                lotOwned: 1000, // BONUS TRIAL 1000 LOT
+                rdnBalance: 0, 
+                isTransactionPending: false, 
+                hasMadeFirstPurchase: false, 
+                isWithdrawalPending: false, 
+                hasToppedUp: false,
+                status: 'TRIAL', // DEFAULT STATUS
+                pendingTopUp: 0,
+                pendingWithdrawal: 0
+            };
             await setDoc(doc(db, USERS_COLLECTION, tempPhoneForReg), newUser);
-            currentUserId = tempPhoneForReg; currentUserData = newUser;
+            currentUserId = tempPhoneForReg;
+            currentUserData = newUser;
             document.getElementById('registerModal').classList.add('hidden');
-            finishLogin(); showNotification("Selamat! Akun Trial aktif dengan bonus 1000 Lot.", true);
+            finishLogin();
+            showNotification("Selamat! Akun Trial aktif dengan bonus 1000 Lot.", true);
         });
         
         safeAddEventListener('cancelRegisterBtn', 'click', () => {
@@ -398,34 +621,90 @@
             document.getElementById('main-content').classList.remove('hidden');
             document.getElementById('auth-status-text').textContent = "Log Out";
             document.getElementById('auth-status-button').className = "py-2 px-4 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition duration-200";
-            initChart(); listenToMarketLogic(); startMarketLoop(); listenToUserData(); hideLoading();
+            
+            initChart();
+            listenToMarketLogic(); 
+            startMarketLoop(); 
+            listenToUserData(); 
+            hideLoading();
         }
 
-        safeAddEventListener('auth-status-button', 'click', () => { if(currentUserId) window.location.reload(); });
-        function hideLoading() { const overlay = document.getElementById('transitionOverlay'); overlay.classList.remove('opacity-100'); setTimeout(() => overlay.classList.add('hidden'), 300); }
+        safeAddEventListener('auth-status-button', 'click', () => {
+            if(currentUserId) window.location.reload();
+        });
 
-        async function updateUserData() { if(currentUserId) await updateDoc(doc(db, USERS_COLLECTION, currentUserId), { rdnBalance: currentUserData.rdnBalance, lotOwned: currentUserData.lotOwned, isTransactionPending: currentUserData.isTransactionPending, isWithdrawalPending: currentUserData.isWithdrawalPending, hasMadeFirstPurchase: currentUserData.hasMadeFirstPurchase, hasToppedUp: currentUserData.hasToppedUp, pendingTopUp: currentUserData.pendingTopUp || 0, pendingWithdrawal: currentUserData.pendingWithdrawal || 0 }); }
+        function hideLoading() {
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
 
-        safeAddEventListener('topUpBtn', 'click', () => document.getElementById('topUpInputModal').classList.remove('hidden'));
-        safeAddEventListener('cancelTopUpInputBtn', 'click', () => document.getElementById('topUpInputModal').classList.add('hidden'));
+        // Trading & Withdrawal (Standard)
+        async function updateUserData() {
+            if(currentUserId) await updateDoc(doc(db, USERS_COLLECTION, currentUserId), {
+                rdnBalance: currentUserData.rdnBalance,
+                lotOwned: currentUserData.lotOwned,
+                isTransactionPending: currentUserData.isTransactionPending,
+                isWithdrawalPending: currentUserData.isWithdrawalPending,
+                hasMadeFirstPurchase: currentUserData.hasMadeFirstPurchase,
+                hasToppedUp: currentUserData.hasToppedUp,
+                pendingTopUp: currentUserData.pendingTopUp || 0,
+                pendingWithdrawal: currentUserData.pendingWithdrawal || 0
+            });
+        }
+
+        // Top Up Logic
+        safeAddEventListener('topUpBtn', 'click', () => {
+             document.getElementById('topUpInputModal').classList.remove('hidden');
+        });
+
+        safeAddEventListener('cancelTopUpInputBtn', 'click', () => {
+             document.getElementById('topUpInputModal').classList.add('hidden');
+        });
+
         safeAddEventListener('proceedTopUpBtn', 'click', () => {
              const amount = parseInt(document.getElementById('topUpAmountInput').value);
-             if (!amount || amount < 10000) return showNotification("Minimal Top Up Rp 10.000", false);
+             if (!amount || amount < 10000) {
+                 showNotification("Minimal Top Up Rp 10.000", false);
+                 return;
+             }
              pendingTopUpAmount = amount;
              document.getElementById('topUpInputModal').classList.add('hidden');
              document.getElementById('paymentAmount').textContent = formatRupiah(amount);
              document.getElementById('paymentModal').classList.remove('hidden');
         });
 
+        // Withdrawal Logic
         safeAddEventListener('withdrawalForm', 'submit', (e) => {
             e.preventDefault();
-            if (currentUserData.status !== 'PREMIUM') { document.getElementById('withdrawalModal').classList.add('hidden'); return alert("Akun Trial tidak dapat menarik dana. Silakan lakukan Top Up untuk upgrade ke Premium."); }
+            
+            // CEK STATUS TRIAL
+            if (currentUserData.status !== 'PREMIUM') {
+                document.getElementById('withdrawalModal').classList.add('hidden');
+                alert("Akun Trial tidak dapat menarik dana. Silakan lakukan Top Up untuk upgrade ke Premium.");
+                return;
+            }
+
             const amt = parseInt(document.getElementById('withdrawalAmount').value);
-            if(amt > currentUserData.rdnBalance) return showNotification("Saldo RDN tidak mencukupi.", false);
-            currentUserData.isWithdrawalPending = true; currentUserData.pendingWithdrawal = amt; 
+            if(amt > currentUserData.rdnBalance) return showNotification("Saldo RDN tidak mencukupi untuk penarikan ini.", false);
+            
+            // currentUserData.rdnBalance -= amt; // DON'T DEDUCT YET
+            currentUserData.isWithdrawalPending = true;
+            currentUserData.pendingWithdrawal = amt; // STORE PENDING AMOUNT
             updateUserData();
-            addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), { type: 'WITHDRAW', user: currentUserId, name: currentUserData.name, amount: amt, timestamp: serverTimestamp() });
-            document.getElementById('withdrawalModal').classList.add('hidden'); showTransactionPopup("Permintaan penarikan dana sedang diproses.");
+
+            // --- SEND ADMIN NOTIFICATION ---
+            addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), {
+                type: 'WITHDRAW',
+                user: currentUserId,
+                name: currentUserData.name,
+                amount: amt,
+                timestamp: serverTimestamp()
+            });
+            // -------------------------------
+
+            document.getElementById('withdrawalModal').classList.add('hidden');
+            showTransactionPopup("Permintaan penarikan dana sebesar " + formatRupiah(amt) + " sedang diproses.");
         });
 
         safeAddEventListener('withdrawalBtn', 'click', () => document.getElementById('withdrawalModal').classList.remove('hidden'));
@@ -433,34 +712,99 @@
         
         const buyBtn = document.getElementById('buyBtn');
         const sellBtn = document.getElementById('sellBtn');
-        if(buyBtn) buyBtn.addEventListener('click', () => { document.getElementById('modalTitle').textContent = 'Beli Saham'; document.getElementById('submitButton').textContent = 'Konfirmasi Beli'; document.getElementById('price').value = currentPrice; document.getElementById('lots').value = 1; document.getElementById('lots').min = 1; document.getElementById('minLotWarning').classList.add('hidden'); document.getElementById('buyMethodText').classList.remove('hidden'); document.getElementById('orderModal').classList.remove('hidden'); });
-        if(sellBtn) sellBtn.addEventListener('click', () => { if(currentUserData.lotOwned <= 0) return showNotification("Anda belum memiliki aset saham untuk dijual.", false); document.getElementById('modalTitle').textContent = 'Jual Saham'; document.getElementById('submitButton').textContent = 'Konfirmasi Jual'; document.getElementById('price').value = currentPrice; document.getElementById('lots').value = 1; document.getElementById('minLotWarning').classList.add('hidden'); document.getElementById('buyMethodText').classList.add('hidden'); document.getElementById('orderModal').classList.remove('hidden'); });
+        
+        if(buyBtn) buyBtn.addEventListener('click', () => {
+            document.getElementById('modalTitle').textContent = 'Beli Saham';
+            document.getElementById('submitButton').textContent = 'Konfirmasi Beli';
+            document.getElementById('price').value = currentPrice;
+            document.getElementById('lots').value = 1;
+            document.getElementById('lots').min = 1;
+            document.getElementById('minLotWarning').classList.add('hidden');
+            document.getElementById('buyMethodText').classList.remove('hidden');
+            document.getElementById('orderModal').classList.remove('hidden');
+        });
+
+        if(sellBtn) sellBtn.addEventListener('click', () => {
+            if(currentUserData.lotOwned <= 0) return showNotification("Anda belum memiliki aset saham untuk dijual.", false);
+            document.getElementById('modalTitle').textContent = 'Jual Saham';
+            document.getElementById('submitButton').textContent = 'Konfirmasi Jual';
+            document.getElementById('price').value = currentPrice;
+            document.getElementById('lots').value = 1;
+            document.getElementById('minLotWarning').classList.add('hidden');
+            document.getElementById('buyMethodText').classList.add('hidden');
+            document.getElementById('orderModal').classList.remove('hidden');
+        });
+
         safeAddEventListener('cancelOrderBtn', 'click', () => document.getElementById('orderModal').classList.add('hidden'));
 
         safeAddEventListener('orderForm', 'submit', (e) => {
             e.preventDefault();
-            const action = document.getElementById('submitButton').textContent; const lots = parseInt(document.getElementById('lots').value); const cost = lots * 100 * currentPrice;
+            const action = document.getElementById('submitButton').textContent;
+            const lots = parseInt(document.getElementById('lots').value);
+            const cost = lots * 100 * currentPrice;
+            
             if (action.includes('Jual')) {
                 if (lots > currentUserData.lotOwned) return showNotification("Jumlah lot yang ingin dijual melebihi kepemilikan Anda.", false);
-                currentUserData.lotOwned -= lots; currentUserData.rdnBalance += cost; updateUserData(); document.getElementById('orderModal').classList.add('hidden'); showNotification("Berhasil menjual " + formatNumber(lots) + " Lot GIAA. Dana " + formatRupiah(cost) + " masuk ke RDN.", true);
+                currentUserData.lotOwned -= lots;
+                currentUserData.rdnBalance += cost;
+                updateUserData();
+                document.getElementById('orderModal').classList.add('hidden');
+                showNotification("Berhasil menjual " + formatNumber(lots) + " Lot GIAA. Dana " + formatRupiah(cost) + " masuk ke RDN.", true);
             } else {
                 if (lots < 1) return showNotification("Minimal pembelian adalah 1 Lot.", false);
-                if (currentUserData.rdnBalance < cost) { document.getElementById('orderModal').classList.add('hidden'); showNotification("Saldo RDN tidak mencukupi. Harap Top Up.", false); return; }
-                currentUserData.rdnBalance -= cost; currentUserData.lotOwned += lots; currentUserData.hasMadeFirstPurchase = true; updateUserData(); document.getElementById('orderModal').classList.add('hidden'); showNotification("Berhasil membeli " + formatNumber(lots) + " Lot GIAA. Saldo RDN terpotong " + formatRupiah(cost) + ".", true);
+                
+                // Check RDN Balance for Buy
+                if (currentUserData.rdnBalance < cost) {
+                     document.getElementById('orderModal').classList.add('hidden');
+                     showNotification("Saldo RDN tidak mencukupi untuk pembelian ini. Harap Top Up.", false);
+                     return;
+                }
+                
+                currentUserData.rdnBalance -= cost;
+                currentUserData.lotOwned += lots;
+                currentUserData.hasMadeFirstPurchase = true;
+                updateUserData();
+                document.getElementById('orderModal').classList.add('hidden');
+                showNotification("Berhasil membeli " + formatNumber(lots) + " Lot GIAA. Saldo RDN terpotong " + formatRupiah(cost) + ".", true);
             }
         });
 
         safeAddEventListener('paymentConfirmBtn', 'click', () => {
             document.getElementById('paymentModal').classList.add('hidden');
-            currentUserData.isTransactionPending = true; currentUserData.pendingTopUp = pendingTopUpAmount; 
+            // Add Pending Top Up to Balance
+            // currentUserData.rdnBalance += pendingTopUpAmount; // DON'T ADD YET
+            currentUserData.isTransactionPending = true; 
+            currentUserData.pendingTopUp = pendingTopUpAmount; // STORE PENDING
+            
+            // NOTE: Top Up does NOT automatically upgrade status here. 
+            // It sends notification to Admin, Admin changes status manually.
+            
             updateUserData();
-            addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), { type: 'TOPUP', user: currentUserId, name: currentUserData.name, amount: pendingTopUpAmount, timestamp: serverTimestamp() });
-            showTransactionPopup("Top Up sedang diproses."); pendingTopUpAmount = 0;
+
+            // --- SEND ADMIN NOTIFICATION ---
+            addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), {
+                type: 'TOPUP',
+                user: currentUserId,
+                name: currentUserData.name,
+                amount: pendingTopUpAmount,
+                timestamp: serverTimestamp()
+            });
+            // -------------------------------
+
+            showTransactionPopup("Top Up sedang diproses."); 
+            pendingTopUpAmount = 0;
         });
-        safeAddEventListener('paymentCancelBtn', 'click', () => { document.getElementById('paymentModal').classList.add('hidden'); pendingTopUpAmount = 0; showNotification("Transaksi dibatalkan.", false); });
+        
+        safeAddEventListener('paymentCancelBtn', 'click', () => {
+            document.getElementById('paymentModal').classList.add('hidden');
+            pendingTopUpAmount = 0;
+            showNotification("Transaksi dibatalkan.", false);
+        });
+        
         safeAddEventListener('openCompanyInfoBtn', 'click', () => { document.getElementById('main-content').classList.add('hidden'); document.getElementById('company-info-page').classList.remove('hidden'); });
         safeAddEventListener('backToDashboardBtn', 'click', () => { document.getElementById('company-info-page').classList.add('hidden'); document.getElementById('main-content').classList.remove('hidden'); if(chartInstance) chartInstance.resize(); });
 
+        // --- CHAT LOGIC AUTOMATED ---
         const chatToggleBtn = document.getElementById('chat-toggle-btn');
         const appContainer = document.getElementById('app-container');
         if(chatToggleBtn) chatToggleBtn.addEventListener('click', () => {
@@ -473,17 +817,31 @@
         let chatIdentifier = null;
         function setupChatListener() {
             if (!currentUserId) return;
-            chatIdentifier = `${currentUserData.name} (${currentUserId})`;
+            chatIdentifier = `${currentUserData.name} (${currentUserId})`; // UNIK ID FOR ADMIN
+            
             onSnapshot(query(collection(db, CHAT_COLLECTION_PATH), orderBy('timestamp', 'asc')), (snapshot) => {
-                const container = document.getElementById('messages-container'); container.innerHTML = ''; let foundMsg = false;
+                const container = document.getElementById('messages-container');
+                container.innerHTML = '';
+                let foundMsg = false;
+
                 snapshot.forEach(doc => {
                     const msg = doc.data();
+                    // Filter: Chat milik user ini (Sender = ID ini ATAU Recipient = ID ini)
                     if (msg.senderEmail === chatIdentifier || msg.recipientEmail === chatIdentifier) {
-                        foundMsg = true; const isMe = msg.senderEmail === chatIdentifier;
-                        let bubble = `<div class="flex flex-col w-full ${isMe ? 'items-end' : 'items-start'}"><span class="text-[10px] text-gray-500 mb-1">${isMe ? 'Anda' : 'CS Admin'}</span><div class="max-w-[80%] px-3 py-2 shadow-md ${isMe ? 'bg-blue-600 text-white my-message' : 'bg-gray-100 text-gray-800 other-message'}"><p class="text-xs">${msg.text}</p></div></div>`;
+                        foundMsg = true;
+                        const isMe = msg.senderEmail === chatIdentifier;
+                        const isAdmin = msg.senderEmail === ADMIN_EMAIL || msg.isAdmin;
+                        
+                        let bubble = `<div class="flex flex-col w-full ${isMe ? 'items-end' : 'items-start'}">
+                            <span class="text-[10px] text-gray-500 mb-1">${isMe ? 'Anda' : 'CS Admin'}</span>
+                            <div class="max-w-[80%] px-3 py-2 shadow-md ${isMe ? 'bg-blue-600 text-white my-message' : 'bg-gray-100 text-gray-800 other-message'}">
+                                <p class="text-xs">${msg.text}</p>
+                            </div>
+                        </div>`;
                         container.insertAdjacentHTML('beforeend', bubble);
                     }
                 });
+                
                 if(!foundMsg) container.innerHTML = '<div class="text-center text-xs text-gray-400 mt-4">Mulai percakapan dengan CS...</div>';
                 container.scrollTop = container.scrollHeight;
             });
@@ -494,13 +852,29 @@
         if(msgInput) msgInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChatMessage(); });
 
         async function sendChatMessage() {
-            const text = msgInput.value.trim(); if(!text || !currentUserId) return;
-            await addDoc(collection(db, CHAT_COLLECTION_PATH), { senderId: currentUserId, senderEmail: chatIdentifier, text: text, isAdmin: false, timestamp: serverTimestamp() });
+            const text = msgInput.value.trim();
+            if(!text || !currentUserId) return;
+            
+            await addDoc(collection(db, CHAT_COLLECTION_PATH), {
+                senderId: currentUserId,
+                senderEmail: chatIdentifier, // KUNCI UTAMA UNTUK ADMIN
+                text: text,
+                isAdmin: false,
+                timestamp: serverTimestamp()
+            });
             msgInput.value = '';
         }
 
+        // NEW: TRADING LOGIC 2.0
         const bidInput = document.getElementById('bidAmount');
-        if(bidInput) bidInput.addEventListener('input', () => { document.getElementById('potentialProfit').textContent = formatRupiah(parseInt(bidInput.value||0)*0.8); });
+        const potentialProfitDisplay = document.getElementById('potentialProfit');
+        
+        if(bidInput) bidInput.addEventListener('input', () => {
+            const val = parseInt(bidInput.value) || 0;
+            const profit = val * 0.8;
+            potentialProfitDisplay.textContent = formatRupiah(profit);
+        });
+
         safeAddEventListener('btnCall', 'click', () => startTrade('UP'));
         safeAddEventListener('btnPut', 'click', () => startTrade('DOWN'));
 
@@ -510,17 +884,37 @@
             const bid = parseInt(bidInput.value);
             if (isNaN(bid) || bid < 10000) return showNotification("Minimal bid Rp 10.000", false);
             if (bid > currentUserData.rdnBalance) return showNotification("Saldo RDN tidak mencukupi!", false);
+
+            // FETCH QUEUE
             let outcome = 'RANDOM';
-            try { const cR = doc(db, "artifacts", appId, "public", "data", "ginvest_market", "config"); const s = await getDoc(cR); if(s.exists()) { const q = s.data().outcomeQueue || []; if (q.length > 0) { outcome = q[0]; updateDoc(cR, { outcomeQueue: q.slice(1) }); } } } catch(e) {}
-            currentUserData.rdnBalance -= bid; updateUserData(); updateUI();
+            try {
+                const configRef = doc(db, "artifacts", appId, "public", "data", "ginvest_market", "config");
+                const configSnap = await getDoc(configRef);
+                if(configSnap.exists()) {
+                    const queue = configSnap.data().outcomeQueue || [];
+                    if (queue.length > 0) {
+                        outcome = queue[0]; 
+                        const newQueue = queue.slice(1);
+                        updateDoc(configRef, { outcomeQueue: newQueue }); 
+                    }
+                }
+            } catch(e) {}
+
+            currentUserData.rdnBalance -= bid;
+            updateUserData(); updateUI();
+
             tradingState = { isTrading: true, timer: 20, direction: direction, bidAmount: bid, entryPrice: currentPrice, targetOutcome: outcome };
             document.getElementById('activeTradeInfo').classList.remove('hidden');
-            document.getElementById('tradePosition').innerHTML = direction === 'UP' ? '<span class="text-green-600">NAIK</span>' : '<span class="text-red-600">TURUN</span>';
+            const posText = direction === 'UP' ? 'NAIK (CALL)' : 'TURUN (PUT)';
+            const posClass = direction === 'UP' ? 'text-green-600' : 'text-red-600';
+            document.getElementById('tradePosition').innerHTML = `<span class="${posClass}">${posText}</span>`;
             document.getElementById('tradeEntryPrice').textContent = tradingState.entryPrice;
             const timerDisplay = document.getElementById('tradeTimerDisplay');
             timerDisplay.classList.add('text-blue-600', 'animate-pulse');
+
             tradingState.interval = setInterval(() => {
-                tradingState.timer--; timerDisplay.textContent = `00:${tradingState.timer < 10 ? '0' : ''}${tradingState.timer}`;
+                tradingState.timer--;
+                timerDisplay.textContent = `00:${tradingState.timer < 10 ? '0' : ''}${tradingState.timer}`;
                 if (tradingState.timer <= 0) finishTrade();
             }, 1000);
         }
@@ -529,24 +923,52 @@
             clearInterval(tradingState.interval); tradingState.isTrading = false;
             const finalPrice = currentPrice;
             const isWin = (tradingState.direction === 'UP' && finalPrice > tradingState.entryPrice) || (tradingState.direction === 'DOWN' && finalPrice < tradingState.entryPrice);
-            const profit = tradingState.bidAmount * 0.8; const totalReturn = tradingState.bidAmount + profit;
+            const profit = tradingState.bidAmount * 0.8;
+            const totalReturn = tradingState.bidAmount + profit;
+            const icon = document.getElementById('resultIcon');
+            const title = document.getElementById('resultTitle');
+            const msg = document.getElementById('resultMessage');
+
             if (isWin) {
                 currentUserData.rdnBalance += totalReturn; updateUserData();
-                document.getElementById('resultIcon').innerHTML = '🎉'; document.getElementById('resultTitle').textContent = "PROFIT!";
-                document.getElementById('resultMessage').innerHTML = `Selamat! + ${formatRupiah(totalReturn)}`;
-                addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), { type: 'TRADE_WIN', user: currentUserId, name: currentUserData.name, amount: totalReturn, timestamp: serverTimestamp() });
+                icon.innerHTML = '🎉'; title.textContent = "PROFIT!"; title.className = "text-2xl font-bold mb-2 text-green-600";
+                msg.innerHTML = `Selamat! Prediksi benar.<br>Entry: ${tradingState.entryPrice} -> End: ${finalPrice}<br><b>+ ${formatRupiah(totalReturn)}</b>`;
+                
+                // --- SEND WIN NOTIFICATION TO ADMIN ---
+                addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), {
+                    type: 'TRADE_WIN',
+                    user: currentUserId,
+                    name: currentUserData.name,
+                    amount: totalReturn, // Send the total return or profit
+                    timestamp: serverTimestamp()
+                });
+
             } else {
-                document.getElementById('resultIcon').innerHTML = '📉'; document.getElementById('resultTitle').textContent = "LOSS";
-                document.getElementById('resultMessage').innerHTML = `Maaf, prediksi salah.`;
-                addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), { type: 'TRADE_LOSS', user: currentUserId, name: currentUserData.name, amount: tradingState.bidAmount, timestamp: serverTimestamp() });
+                icon.innerHTML = '📉'; title.textContent = "LOSS"; title.className = "text-2xl font-bold mb-2 text-red-600";
+                msg.innerHTML = `Maaf, prediksi salah.<br>Entry: ${tradingState.entryPrice} -> End: ${finalPrice}<br>Modal hangus.`;
+                
+                 // --- SEND LOSS NOTIFICATION TO ADMIN ---
+                 addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), {
+                    type: 'TRADE_LOSS',
+                    user: currentUserId,
+                    name: currentUserData.name,
+                    amount: tradingState.bidAmount, // Send the lost bid amount
+                    timestamp: serverTimestamp()
+                });
             }
             updateUI();
+            document.getElementById('btnCall').disabled = false; document.getElementById('btnPut').disabled = false; bidInput.disabled = false;
             document.getElementById('activeTradeInfo').classList.add('hidden');
             document.getElementById('tradeTimerDisplay').textContent = "00:20";
+            document.getElementById('tradeTimerDisplay').classList.remove('text-blue-600', 'animate-pulse');
             document.getElementById('resultModal').classList.remove('hidden');
         }
 
-        window.onload = async () => { await initAuth(); await seedDefaultUser(); };
+        // STARTUP
+        window.onload = async () => {
+            await initAuth();
+            await seedDefaultUser();
+        };
     </script>
 </body>
 </html>
