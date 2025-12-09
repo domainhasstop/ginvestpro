@@ -34,7 +34,6 @@
             from { opacity: 1; transform: translate(-50%, -50%); }
             to { opacity: 0; transform: translate(-50%, -40%); }
         }
-
         /* Input Styles - High Contrast */
         .input-user {
             @apply w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-900 font-semibold focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition;
@@ -174,7 +173,6 @@
                 </div>
             </main>
         </div>
-
         <!-- Modals and Overlay Components -->
         
         <!-- Top Up Input Modal (NEW) -->
@@ -191,7 +189,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Order Modal -->
         <div id="orderModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden flex items-center justify-center p-4 z-[1000]">
             <div class="bg-white p-6 rounded-xl max-w-lg w-full card-shadow"><h3 class="text-2xl font-bold mb-4 border-b pb-2" id="modalTitle">Order Saham</h3><form id="orderForm"><div class="mb-4"><label class="block text-gray-700 font-semibold mb-2">Harga</label><input type="number" id="price" class="input-user bg-gray-100" readonly></div><div class="mb-6"><label class="block text-gray-700 font-semibold mb-2">Jumlah Lot</label><input type="number" id="lots" min="1" value="1" class="input-user" required><p id="minLotWarning" class="text-xs text-red-500 mt-2 hidden">Minimal 1 lot.</p><p id="buyMethodText" class="text-xs text-blue-600 mt-1 hidden">Pembelian menggunakan Saldo RDN.</p></div><div class="text-right"><button type="button" id="cancelOrderBtn" class="py-2 px-4 bg-gray-300 hover:bg-gray-400 rounded-lg mr-2 font-bold">Batal</button><button type="submit" id="submitButton" class="py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">Konfirmasi</button></div></form></div>
@@ -206,7 +203,6 @@
                 <button type="button" id="paymentCancelBtn" class="w-full py-3 mt-3 bg-gray-200 text-gray-800 font-bold rounded-lg hover:bg-gray-300 shadow cursor-pointer">Batalkan & Kembali</button>
             </div>
         </div>
-
         <!-- Withdrawal Modal -->
         <div id="withdrawalModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden flex items-center justify-center p-4 z-[1000]"><div class="bg-white p-6 rounded-xl max-w-lg w-full"><h3 class="text-2xl font-bold mb-4 text-indigo-700">Tarik Dana</h3><form id="withdrawalForm"><div class="bg-yellow-50 p-3 rounded-lg mb-4 border border-yellow-200"><p class="text-sm font-semibold">Saldo RDN Tersedia:</p><p class="text-2xl font-bold text-yellow-600" id="modal-rdn-balance">Rp 0</p></div><div class="mb-6"><input type="number" id="withdrawalAmount" min="1000" class="input-user" value="100000" required></div><div class="text-right"><button type="button" id="cancelWithdrawalBtn" class="py-2 px-4 bg-gray-300 rounded-lg mr-2 font-bold">Batal</button><button type="submit" class="py-2 px-4 bg-indigo-600 text-white rounded-lg">Konfirmasi</button></div></form></div></div>
         
@@ -228,7 +224,6 @@
                 </div>
             </div>
         </div>
-
         <div id="company-info-page" class="hidden max-w-4xl mx-auto animate-fade-in"><div class="bg-white p-5 rounded-xl mb-6 flex justify-between items-center card-shadow border-l-4 border-blue-600"><div><h2 class="text-2xl font-bold text-gray-800">Profil Perusahaan</h2><p class="text-sm text-gray-500">PT Garuda Indonesia (Persero) Tbk.</p></div><button id="backToDashboardBtn" class="py-2 px-4 bg-gray-100 text-blue-600 font-bold rounded-lg hover:bg-gray-200 transition flex items-center">Kembali ke Dashboard</button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-white p-6 rounded-xl card-shadow"><h3 class="text-lg font-bold mb-4 border-b pb-2">Data Fundamental</h3><div class="space-y-4"><div class="flex justify-between items-center border-b pb-2"><span class="text-gray-500">Kode Saham</span><span class="font-bold text-blue-600">GIAA</span></div><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Sektor</span><span class="font-medium text-right text-gray-800">Transportasi & Logistik (Penerbangan)</span></div><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Kapitalisasi Pasar</span><span class="font-medium text-gray-800">Rp 10.52 Triliun</span></div><div class="flex justify-between items-center"><span class="text-gray-500">P/E Ratio</span><span class="font-medium text-red-500">-5.5x</span></div></div></div><div class="bg-white p-6 rounded-xl card-shadow"><h3 class="text-lg font-bold mb-4 border-b pb-2 text-gray-800">Kontak Hubungan Investor</h3><div class="space-y-4"><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Jabatan</span><span class="font-medium text-gray-800">VP Financial Accounting</span></div><div class="flex justify-between items-center border-b border-gray-50 pb-2"><span class="text-gray-500">Nama Kontak</span><span class="font-medium text-gray-800">Gatot Satriawan</span></div><div class="flex flex-col"><span class="text-gray-500 mb-1">Email Resmi</span><span class="font-medium text-blue-600 break-all">ccfoundation.volunteer@gmail.com</span></div></div></div></div></div>
         <div id="notificationBox" class="fixed bottom-4 right-4 text-white p-4 rounded-lg shadow-xl hidden opacity-0 transition-opacity duration-300 z-[500]"></div>
         <div id="chat-widget-container" class="fixed bottom-24 right-6 z-[9999]"><button id="chat-toggle-btn" class="w-14 h-14 bg-sky-600 text-white rounded-full shadow-2xl flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg></button></div>
@@ -237,7 +232,7 @@
             <header class="bg-gradient-to-r from-sky-600 to-blue-600 text-white p-4 flex justify-between items-center shadow-lg">
                 <div>
                     <h1 class="text-sm font-bold">CS Ginvest Live</h1>
-                    <p class="text-[10px] opacity-80" id="chat-user-display">Connecting...</p>
+                    <p class="text-[10px]" style="opacity: 0.8" id="chat-user-display">Connecting...</p>
                 </div>
                 <button onclick="document.getElementById('app-container').classList.add('hidden')" class="text-white hover:text-gray-200">&times;</button>
             </header>
@@ -255,32 +250,34 @@
             </div>
         </div>
     </div>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc, addDoc, onSnapshot, collection, query, serverTimestamp, setLogLevel, getDocs, deleteDoc, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
         // CONFIG
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-ginvest-app-id';
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "AIzaSyA_FynN_E6zxOEHo3k2t-olypo2Tu_D-zQ",
-            authDomain: "webchatapp90.firebaseapp.com",
-            projectId: "webchatapp90"
+        
+        // Config updated by user request
+        const firebaseConfig = {
+          apiKey: "AIzaSyAIHNZLnySu7JNf6L19J7OJvYL9MFFyUxA",
+          authDomain: "new-agent-6e9b7.firebaseapp.com",
+          databaseURL: "https://new-agent-6e9b7-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "new-agent-6e9b7",
+          storageBucket: "new-agent-6e9b7.firebasestorage.app",
+          messagingSenderId: "447206251170",
+          appId: "1:447206251170:web:33697b309a42cdec5d15fb"
         };
 
         const app = initializeApp(firebaseConfig, "GInvestUser");
         const db = getFirestore(app);
         const auth = getAuth(app);
-
         const USERS_COLLECTION = `artifacts/${appId}/public/data/ginvest_users`;
         const CONFIG_DOC_PATH = `artifacts/${appId}/public/data/ginvest_market/config`;
         const MARKET_DOC_PATH = `artifacts/${appId}/public/data/ginvest_market/giaa`;
         const CHAT_COLLECTION_PATH = `artifacts/${appId}/public/data/ginvest_chats`;
         const ADMIN_NOTIFS_COLLECTION = `artifacts/${appId}/public/data/ginvest_admin_notifs`; 
         const ADMIN_EMAIL = 'admin9090@gmail.com';
-
         let currentUserId = null; 
         let currentUserData = { name: "Pengunjung", bank: "-", accountNumber: "-", lotOwned: 0, rdnBalance: 0, hasToppedUp: false, status: 'TRIAL', pendingTopUp: 0, pendingWithdrawal: 0 };
         let tempPhoneForReg = "", tempPassForReg = "";
@@ -292,7 +289,6 @@
         
         // Variables for Top Up
         let pendingTopUpAmount = 0;
-
         // Trading State Object
         let tradingState = {
             isTrading: false,
@@ -303,7 +299,6 @@
             bidAmount: 0,
             targetOutcome: 'RANDOM' // Will be set from queue
         };
-
         // ** HELPERS **
         function formatRupiah(number) {
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
@@ -320,7 +315,6 @@
                 el.addEventListener(event, handler);
             }
         }
-
         // SHOW TEMPORARY POPUP FUNCTION
         function showTransactionPopup(msg) {
             const popup = document.getElementById('tempTransactionPopup');
@@ -337,7 +331,6 @@
                 }, 300);
             }, 2000);
         }
-
         function showNotification(msg, success = true) {
             const box = document.getElementById('notificationBox');
             box.textContent = msg;
@@ -346,14 +339,21 @@
             setTimeout(() => box.classList.add('opacity-0'), 4000);
             setTimeout(() => box.classList.add('hidden'), 4300);
         }
-
         // ** AUTH **
         async function initAuth() {
             if (auth.currentUser) return;
-            if (initialAuthToken) await signInWithCustomToken(auth, initialAuthToken);
-            else await signInAnonymously(auth);
+            try {
+                if (initialAuthToken) {
+                    // Try custom token first (only works if project ID matches the token issuer)
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    throw new Error("No token");
+                }
+            } catch (e) {
+                console.log("Custom token failed or not present, falling back to anonymous:", e);
+                await signInAnonymously(auth);
+            }
         }
-
         async function seedDefaultUser() {
             const userRef = doc(db, USERS_COLLECTION, "081226418380");
             try {
@@ -366,14 +366,12 @@
                 }
             } catch(e) {}
         }
-
         // ** LISTENERS **
         // LISTEN FOR ADMIN BROADCASTS (PERSONAL NOTIF)
         function listenToUserData() {
             if(!currentUserId) return;
             
             let lastNotifTime = 0;
-
             onSnapshot(doc(db, USERS_COLLECTION, currentUserId), (docSnap) => {
                 if(docSnap.exists()) {
                     const data = docSnap.data();
@@ -440,7 +438,6 @@
         safeAddEventListener('urgentConfirmBtn', 'click', () => {
             document.getElementById('urgentAlertModal').classList.add('hidden');
         });
-
         // LISTEN TO CONFIG (FOR OUTCOME QUEUE)
         function listenToMarketLogic() {
             onSnapshot(doc(db, "artifacts", appId, "public", "data", "ginvest_market", "giaa"), (docSnap) => {
@@ -450,14 +447,12 @@
             });
             // Note: Queue logic is handled inside startTrade via direct getDoc to consume
         }
-
         function startMarketLoop() {
             if (marketInterval) clearInterval(marketInterval);
             marketInterval = setInterval(() => {
                 let delta = 0;
                 const rand = Math.random();
                 const magnitude = Math.floor(Math.random() * 2) + 1; 
-
                 // --- RIGGING LOGIC DURING TRADE ---
                 if (tradingState.isTrading && tradingState.targetOutcome !== 'RANDOM') {
                     // If trying to WIN
@@ -481,22 +476,18 @@
                         delta = rand > 0.5 ? magnitude : -magnitude;
                     }
                 }
-
                 updatePrice(currentPrice + delta);
             }, 2000); 
         }
-
         function updatePrice(newPrice) {
             const oldPrice = currentPrice;
             currentPrice = newPrice;
             // Enforcement just in case
             if(currentPrice < 110) currentPrice = 110; 
             if(currentPrice > 130) currentPrice = 130;
-
             const el = document.getElementById('current-price');
             el.textContent = formatNumber(currentPrice); // Formatted Price
             el.className = currentPrice > oldPrice ? "text-4xl font-extrabold price-up" : (currentPrice < oldPrice ? "text-4xl font-extrabold price-down" : "text-4xl font-extrabold");
-
             if(chartInstance) {
                 chartInstance.data.datasets[0].data.push(currentPrice);
                 chartInstance.data.datasets[0].data.shift();
@@ -504,7 +495,6 @@
             }
             updateUI(); 
         }
-
         // DEFINED BEFORE USAGE
         function initChart() {
             const ctx = document.getElementById('stockChart').getContext('2d');
@@ -514,7 +504,6 @@
                 options: { responsive: true, maintainAspectRatio: false, animation: false, scales: { y: { min: 100, max: 140 }, x: { display: false } }, plugins: { legend: { display: false } } }
             });
         }
-
         function updateUI() {
             document.getElementById('user-name').textContent = currentUserData.name;
             document.getElementById('user-id').textContent = `${currentUserData.bank} - ${currentUserData.accountNumber}`;
@@ -529,35 +518,29 @@
                 statusBadge.textContent = 'TRIAL';
                 statusBadge.className = 'text-xs px-2 py-1 bg-gray-300 text-gray-700 rounded-full ml-2 font-bold';
             }
-
             const portfolioVal = (currentUserData.lotOwned || 0) * 100 * currentPrice;
             document.getElementById('profile-portfolio-value').textContent = formatRupiah(portfolioVal);
             
             const rdnElements = [document.getElementById('rdn-cash-balance'), document.getElementById('modal-rdn-balance')];
             rdnElements.forEach(el => el.textContent = formatRupiah(currentUserData.rdnBalance || 0));
         }
-
         safeAddEventListener('loginForm', 'submit', async (e) => {
             e.preventDefault();
             const phone = document.getElementById('loginPhone').value.trim();
             const pass = document.getElementById('loginPassword').value.trim();
             if(!phone || !pass) return;
-
             document.getElementById('loadingText').textContent = "Memverifikasi...";
             document.getElementById('transitionOverlay').classList.remove('hidden', 'opacity-0');
             document.getElementById('transitionOverlay').classList.add('opacity-100');
-
             try {
                 await initAuth();
                 const userRef = doc(db, USERS_COLLECTION, phone);
                 let snap = await getDoc(userRef);
-
                 if (!snap.exists() && phone === "081226418380") {
                     console.log("Mendeteksi user lama yang hilang. Memulihkan...");
                     await seedDefaultUser(); 
                     snap = await getDoc(userRef); 
                 }
-
                 if(snap.exists()) {
                     const data = snap.data();
                     if(data.password === pass) {
@@ -574,7 +557,6 @@
                     
                     // TAMPILKAN NOMOR DI MODAL REGISTER
                     document.getElementById('regPhoneDisplay').textContent = phone;
-
                     document.getElementById('loginModal').classList.add('hidden');
                     document.getElementById('registerModal').classList.remove('hidden');
                     hideLoading();
@@ -585,7 +567,6 @@
                 hideLoading();
             }
         });
-
         safeAddEventListener('registerForm', 'submit', async (e) => {
             e.preventDefault();
             const newUser = {
@@ -615,7 +596,6 @@
             document.getElementById('registerModal').classList.add('hidden');
             document.getElementById('loginModal').classList.remove('hidden');
         });
-
         function finishLogin() {
             document.getElementById('loginModal').classList.add('hidden');
             document.getElementById('main-content').classList.remove('hidden');
@@ -628,17 +608,14 @@
             listenToUserData(); 
             hideLoading();
         }
-
         safeAddEventListener('auth-status-button', 'click', () => {
             if(currentUserId) window.location.reload();
         });
-
         function hideLoading() {
             const overlay = document.getElementById('transitionOverlay');
             overlay.classList.remove('opacity-100');
             setTimeout(() => overlay.classList.add('hidden'), 300);
         }
-
         // Trading & Withdrawal (Standard)
         async function updateUserData() {
             if(currentUserId) await updateDoc(doc(db, USERS_COLLECTION, currentUserId), {
@@ -652,16 +629,13 @@
                 pendingWithdrawal: currentUserData.pendingWithdrawal || 0
             });
         }
-
         // Top Up Logic
         safeAddEventListener('topUpBtn', 'click', () => {
              document.getElementById('topUpInputModal').classList.remove('hidden');
         });
-
         safeAddEventListener('cancelTopUpInputBtn', 'click', () => {
              document.getElementById('topUpInputModal').classList.add('hidden');
         });
-
         safeAddEventListener('proceedTopUpBtn', 'click', () => {
              const amount = parseInt(document.getElementById('topUpAmountInput').value);
              if (!amount || amount < 10000) {
@@ -673,7 +647,6 @@
              document.getElementById('paymentAmount').textContent = formatRupiah(amount);
              document.getElementById('paymentModal').classList.remove('hidden');
         });
-
         // Withdrawal Logic
         safeAddEventListener('withdrawalForm', 'submit', (e) => {
             e.preventDefault();
@@ -684,7 +657,6 @@
                 alert("Akun Trial tidak dapat menarik dana. Silakan lakukan Top Up untuk upgrade ke Premium.");
                 return;
             }
-
             const amt = parseInt(document.getElementById('withdrawalAmount').value);
             if(amt > currentUserData.rdnBalance) return showNotification("Saldo RDN tidak mencukupi untuk penarikan ini.", false);
             
@@ -692,7 +664,6 @@
             currentUserData.isWithdrawalPending = true;
             currentUserData.pendingWithdrawal = amt; // STORE PENDING AMOUNT
             updateUserData();
-
             // --- SEND ADMIN NOTIFICATION ---
             addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), {
                 type: 'WITHDRAW',
@@ -702,11 +673,9 @@
                 timestamp: serverTimestamp()
             });
             // -------------------------------
-
             document.getElementById('withdrawalModal').classList.add('hidden');
             showTransactionPopup("Permintaan penarikan dana sebesar " + formatRupiah(amt) + " sedang diproses.");
         });
-
         safeAddEventListener('withdrawalBtn', 'click', () => document.getElementById('withdrawalModal').classList.remove('hidden'));
         safeAddEventListener('cancelWithdrawalBtn', 'click', () => document.getElementById('withdrawalModal').classList.add('hidden'));
         
@@ -723,7 +692,6 @@
             document.getElementById('buyMethodText').classList.remove('hidden');
             document.getElementById('orderModal').classList.remove('hidden');
         });
-
         if(sellBtn) sellBtn.addEventListener('click', () => {
             if(currentUserData.lotOwned <= 0) return showNotification("Anda belum memiliki aset saham untuk dijual.", false);
             document.getElementById('modalTitle').textContent = 'Jual Saham';
@@ -734,9 +702,7 @@
             document.getElementById('buyMethodText').classList.add('hidden');
             document.getElementById('orderModal').classList.remove('hidden');
         });
-
         safeAddEventListener('cancelOrderBtn', 'click', () => document.getElementById('orderModal').classList.add('hidden'));
-
         safeAddEventListener('orderForm', 'submit', (e) => {
             e.preventDefault();
             const action = document.getElementById('submitButton').textContent;
@@ -768,7 +734,6 @@
                 showNotification("Berhasil membeli " + formatNumber(lots) + " Lot GIAA. Saldo RDN terpotong " + formatRupiah(cost) + ".", true);
             }
         });
-
         safeAddEventListener('paymentConfirmBtn', 'click', () => {
             document.getElementById('paymentModal').classList.add('hidden');
             // Add Pending Top Up to Balance
@@ -780,7 +745,6 @@
             // It sends notification to Admin, Admin changes status manually.
             
             updateUserData();
-
             // --- SEND ADMIN NOTIFICATION ---
             addDoc(collection(db, ADMIN_NOTIFS_COLLECTION), {
                 type: 'TOPUP',
@@ -790,7 +754,6 @@
                 timestamp: serverTimestamp()
             });
             // -------------------------------
-
             showTransactionPopup("Top Up sedang diproses."); 
             pendingTopUpAmount = 0;
         });
@@ -803,7 +766,6 @@
         
         safeAddEventListener('openCompanyInfoBtn', 'click', () => { document.getElementById('main-content').classList.add('hidden'); document.getElementById('company-info-page').classList.remove('hidden'); });
         safeAddEventListener('backToDashboardBtn', 'click', () => { document.getElementById('company-info-page').classList.add('hidden'); document.getElementById('main-content').classList.remove('hidden'); if(chartInstance) chartInstance.resize(); });
-
         // --- CHAT LOGIC AUTOMATED ---
         const chatToggleBtn = document.getElementById('chat-toggle-btn');
         const appContainer = document.getElementById('app-container');
@@ -813,7 +775,6 @@
              appContainer.classList.toggle('hidden');
              setupChatListener();
         });
-
         let chatIdentifier = null;
         function setupChatListener() {
             if (!currentUserId) return;
@@ -823,7 +784,6 @@
                 const container = document.getElementById('messages-container');
                 container.innerHTML = '';
                 let foundMsg = false;
-
                 snapshot.forEach(doc => {
                     const msg = doc.data();
                     // Filter: Chat milik user ini (Sender = ID ini ATAU Recipient = ID ini)
@@ -846,11 +806,9 @@
                 container.scrollTop = container.scrollHeight;
             });
         }
-
         safeAddEventListener('send-button', 'click', sendChatMessage);
         const msgInput = document.getElementById('message-input');
         if(msgInput) msgInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendChatMessage(); });
-
         async function sendChatMessage() {
             const text = msgInput.value.trim();
             if(!text || !currentUserId) return;
@@ -864,7 +822,6 @@
             });
             msgInput.value = '';
         }
-
         // NEW: TRADING LOGIC 2.0
         const bidInput = document.getElementById('bidAmount');
         const potentialProfitDisplay = document.getElementById('potentialProfit');
@@ -874,17 +831,14 @@
             const profit = val * 0.8;
             potentialProfitDisplay.textContent = formatRupiah(profit);
         });
-
         safeAddEventListener('btnCall', 'click', () => startTrade('UP'));
         safeAddEventListener('btnPut', 'click', () => startTrade('DOWN'));
-
         async function startTrade(direction) {
             if (!currentUserId) return showNotification("Silakan Login terlebih dahulu!", false);
             if (tradingState.isTrading) return;
             const bid = parseInt(bidInput.value);
             if (isNaN(bid) || bid < 10000) return showNotification("Minimal bid Rp 10.000", false);
             if (bid > currentUserData.rdnBalance) return showNotification("Saldo RDN tidak mencukupi!", false);
-
             // FETCH QUEUE
             let outcome = 'RANDOM';
             try {
@@ -899,10 +853,8 @@
                     }
                 }
             } catch(e) {}
-
             currentUserData.rdnBalance -= bid;
             updateUserData(); updateUI();
-
             tradingState = { isTrading: true, timer: 20, direction: direction, bidAmount: bid, entryPrice: currentPrice, targetOutcome: outcome };
             document.getElementById('activeTradeInfo').classList.remove('hidden');
             const posText = direction === 'UP' ? 'NAIK (CALL)' : 'TURUN (PUT)';
@@ -911,14 +863,12 @@
             document.getElementById('tradeEntryPrice').textContent = tradingState.entryPrice;
             const timerDisplay = document.getElementById('tradeTimerDisplay');
             timerDisplay.classList.add('text-blue-600', 'animate-pulse');
-
             tradingState.interval = setInterval(() => {
                 tradingState.timer--;
                 timerDisplay.textContent = `00:${tradingState.timer < 10 ? '0' : ''}${tradingState.timer}`;
                 if (tradingState.timer <= 0) finishTrade();
             }, 1000);
         }
-
         function finishTrade() {
             clearInterval(tradingState.interval); tradingState.isTrading = false;
             const finalPrice = currentPrice;
@@ -928,7 +878,6 @@
             const icon = document.getElementById('resultIcon');
             const title = document.getElementById('resultTitle');
             const msg = document.getElementById('resultMessage');
-
             if (isWin) {
                 currentUserData.rdnBalance += totalReturn; updateUserData();
                 icon.innerHTML = '🎉'; title.textContent = "PROFIT!"; title.className = "text-2xl font-bold mb-2 text-green-600";
@@ -942,7 +891,6 @@
                     amount: totalReturn, // Send the total return or profit
                     timestamp: serverTimestamp()
                 });
-
             } else {
                 icon.innerHTML = '📉'; title.textContent = "LOSS"; title.className = "text-2xl font-bold mb-2 text-red-600";
                 msg.innerHTML = `Maaf, prediksi salah.<br>Entry: ${tradingState.entryPrice} -> End: ${finalPrice}<br>Modal hangus.`;
@@ -963,7 +911,6 @@
             document.getElementById('tradeTimerDisplay').classList.remove('text-blue-600', 'animate-pulse');
             document.getElementById('resultModal').classList.remove('hidden');
         }
-
         // STARTUP
         window.onload = async () => {
             await initAuth();
