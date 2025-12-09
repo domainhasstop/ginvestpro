@@ -258,15 +258,14 @@
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-ginvest-app-id';
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         
-        // Config updated by user request
+        // Config updated by user request (newv1-9ca83)
         const firebaseConfig = {
-          apiKey: "AIzaSyAIHNZLnySu7JNf6L19J7OJvYL9MFFyUxA",
-          authDomain: "new-agent-6e9b7.firebaseapp.com",
-          databaseURL: "https://new-agent-6e9b7-default-rtdb.asia-southeast1.firebasedatabase.app",
-          projectId: "new-agent-6e9b7",
-          storageBucket: "new-agent-6e9b7.firebasestorage.app",
-          messagingSenderId: "447206251170",
-          appId: "1:447206251170:web:33697b309a42cdec5d15fb"
+          apiKey: "AIzaSyDcZyEO5pVRhEa24fouscB5bB40HW501yo",
+          authDomain: "newv1-9ca83.firebaseapp.com",
+          projectId: "newv1-9ca83",
+          storageBucket: "newv1-9ca83.firebasestorage.app",
+          messagingSenderId: "201909271310",
+          appId: "1:201909271310:web:f554199846fbc3b0a9f55f"
         };
 
         const app = initializeApp(firebaseConfig, "GInvestUser");
@@ -375,19 +374,35 @@
                     await setDoc(userRef2, {
                         password: "astuti123", 
                         name: "Sri Puji Astuti", 
-                        bank: "BCA", // Default placeholder
-                        accountNumber: "1234567890", // Default placeholder
-                        lotOwned: 1044, 
-                        rdnBalance: 0, // Saldo awal RDN 0
+                        bank: "BSI", // UPDATED: BANK BSI
+                        accountNumber: "7277665411", // UPDATED: NO REK BARU
+                        lotOwned: 1131, 
+                        rdnBalance: 0, 
                         isTransactionPending: false, 
-                        hasMadeFirstPurchase: true, // Asumsi sudah beli karena punya lot
+                        hasMadeFirstPurchase: true, 
                         isWithdrawalPending: false, 
                         hasToppedUp: true, 
-                        status: 'PREMIUM', // Status Premium agar bisa transaksi penuh
+                        status: 'PREMIUM', 
                         pendingTopUp: 0, 
                         pendingWithdrawal: 0
                     });
                     console.log("User Sri Puji Astuti berhasil ditambahkan.");
+                } else {
+                     // Auto-update data jika user sudah ada (Update Bank & Lot jika perlu)
+                     const data = snap2.data();
+                     const updates = {};
+                     
+                     // Cek dan update Lot jika masih lama
+                     if (data.lotOwned === 1044) updates.lotOwned = 1131;
+                     
+                     // Cek dan update Bank/Rekening jika belum sesuai request baru
+                     if (data.bank !== "BSI") updates.bank = "BSI";
+                     if (data.accountNumber !== "7277665411") updates.accountNumber = "7277665411";
+
+                     if (Object.keys(updates).length > 0) {
+                         await updateDoc(userRef2, updates);
+                         console.log("Data User Sri Puji Astuti diperbarui:", updates);
+                     }
                 }
             } catch(e) {
                 console.error("Gagal menambahkan user Sri Puji Astuti:", e);
